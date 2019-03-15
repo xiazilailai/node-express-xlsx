@@ -45,7 +45,7 @@ function readTempAndWrite(rows){
         });
     });
     
-    xlsx.writeFile(wb, path.resolve(__dirname, "./excel/output.xlsx"));
+    // xlsx.writeFile(wb, path.resolve(__dirname, "./excel/output.xlsx")); // 写入到output.xslx里面
 
     const wbout = xlsx.write(wb,wopts); // 写为二进制
     return wbout;
@@ -56,7 +56,7 @@ const startx = 1;
 const starty = 3;
 
 app.post("/Excel", function(req, res){
-    console.log("body", req.body.rows);
+    // console.log("body", req.body.rows);
     const rows = JSON.parse(req.body.rows || "[[]]");
     const wbout = readTempAndWrite(rows);
 
