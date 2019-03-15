@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="container" id="app">
+        <div class="page-header">
+            <h3 v-once>{{ title }}</h3>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <form-group v-for="param in params" v-if="!param.hide" :key="param.key" :param="param"></form-group>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 col-xs-offset-10">
+                            <div class="form-group">
+                                <button @click="addRow()" class="btn btn-success btn-block">Add</button>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div class="page-header">
+            <h4>预览</h4>
+        </div>
+        <div class="container-fluid">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th v-for="p in params" :key="p.key" v-once>{{ p.text }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(r, i) in rows" :key="i">
+                        <td v-for="(c, j) in r" :key="j">{{ c.v ? c.v + c.u : "" }}</td>
+                    </tr>
+                </tbody>
+                <tfoot v-if="!rows.length">
+                    <tr>
+                        <td :colspan="params.length" class="text-center">暂无数据</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-2 col-xs-offset-10">                    
+                    <form action="/Excel" method="POST" target="hideForm" id="exportForm">
+                        <input name="rows" type="text" class="hide" id="exportFormInput">
+                        <button @click="exportXlsx()" class="btn btn-info btn-block">Export</button>
+                    </form>
+                    <iframe class="hide" src="about:blank" frameborder="0" name="hideForm"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./jquery/jquery-3.3.1.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <script src="./bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="./vue/vue.min.js"></script>
+    <script src="./vue/vuex.min.js"></script>
+    <script src="./vue/vue-router.min.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
