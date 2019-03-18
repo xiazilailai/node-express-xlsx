@@ -79,7 +79,7 @@ const app = new Vue({
                     params[i][j] = cell.v ? cell.v + cell.u : "";
                 });
             });
-            console.log(params);
+            // console.log(params);
             // const formData = new FormData(document.getElementById("exportForm"));
             // formData.set("rows", params);
             document.getElementById("exportFormInput").value = JSON.stringify(params);

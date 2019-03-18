@@ -22,7 +22,7 @@ const transformDate = (localeDateString) => {
     return date.join("-");
 };
 
-function readTempAndWrite(rows){
+const readTempAndWrite = (rows) => {
     const wb = xlsx.readFile(path.resolve(__dirname, "./excel/dailyTemplate.xlsx"), {
         cellStyles: true,
         bookFiles: true
